@@ -32,9 +32,16 @@ with app.app_context():
     if not Profile.query.first():
         my_profile = Profile(
             name="Батраз Секинаев",
-            title="Junior Python Developer",
-            about="Привет! Я начинающий разработчик Python. Создаю веб-приложения и игры на Python. Мой фидбек: \"Я люблю Python!\"",
-            skills="Python, Django, Flask, SQL, GIT, GitHub, GitVerse"
+            title="Python Developer",
+            about="Разработчик Python с опытом создания веб-приложений и API. "
+                  "Специализируюсь на бэкенд-разработке с использованием современных технологий. "
+                  "Создаю масштабируемые и эффективные решения с применением лучших практик разработки.",
+            skills="Разработка веб-приложений и API на Python| "
+                   "Фреймворки: Django, FastAPI, Flask | "
+                   "Базы данных: PostgreSQL, SQLAlchemy | "
+                   "Инфраструктура: Docker, CI/CD | "
+                   "Дополнительно: Парсинг данных, REST API, Юнит-тестирование, "
+                   "Асинхронное программирование, Паттерны проектирования"
         )
         db.session.add(my_profile)
 
@@ -43,25 +50,23 @@ with app.app_context():
                 title="Мой сайт-портфолио",
                 description="Этот сайт, который вы сейчас просматриваете! Создан с использованием Flask, SQLAlchemy и современных веб-технологий.",
                 technologies="Python, Flask, SQLite, HTML, CSS, JavaScript",
-                github_url="https://github.com/yourusername/my-portfolio",
-                demo_url="http://yourportfolio.com",
+                github_url="https://github.com/bsekinaev/portfolio",
                 image_url="images/portfolio.png"
             ),
             Project(
                 title="Игра на Python",
                 description="Классическая игра 'Змейка' с использованием библиотеки Pygame. Реализованы различные уровни сложности и система рекордов.",
                 technologies="Python, Pygame",
-                github_url="https://github.com/yourusername/snake-game",
+                github_url="https://github.com/bsekinaev/snake-game",
                 demo_url=None,
                 image_url="images/snake.png"
             ),
             Project(
-                title="Погодное приложение",
-                description="Веб-приложение для просмотра текущей погоды и прогноза на 5 дней. Интеграция с OpenWeatherMap API.",
+                title="Приложение для стенаграфии",
+                description="Веб-приложение для зашифровывания/расшифровывания текста в картинку.",
                 technologies="Python, Flask, JavaScript, API",
-                github_url="https://github.com/yourusername/weather-app",
-                demo_url="http://weather-app.example.com",
-                image_url="images/weather.png"
+                github_url="https://github.com/bsekinaev/Neon-Steganography",
+                image_url="images/Neon_st.png"
             )
         ]
 
@@ -93,7 +98,7 @@ def contact():
         msg = Message(
             subject=f"Сообщение с портфолио: {form.subject.data}",
             sender=app.config['MAIL_DEFAULT_SENDER'],
-            recipients=['your@email.com'],  # Замените на ваш реальный email
+            recipients=['bsekinaev@ya.ru'],
             body=f"""
             От: {form.name.data} <{form.email.data}>
             Тема: {form.subject.data}
