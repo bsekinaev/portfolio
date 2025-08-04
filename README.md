@@ -23,8 +23,8 @@
 ### Инструкция по установке
 1. Клонируйте репозиторий:
 ```bash
-git clone https://github.com/batraz-sekinae/flask-portfolio.git
-cd flask-portfolio
+git clone [https://github.com/bsekinaev/portfolio.git]
+cd portfolio
 ```
 2. Создайте виртуальное окружение:
 ```bash
