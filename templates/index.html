@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Добро пожаловать!</h2>
+<p>Это моё портфолио, созданное с помощью Flask. Здесь вы можете узнать обо мне и моих навыках.</p>
+
+<div style="margin-top: 2rem;">
+  <h3>Почему Flask?</h3>
+  <p>Flask - это легковесный фреймворк для создания веб-приложений на Python. Он идеально подходит для:</p>
+  <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+    <li>Быстрого прототипирования</li>
+    <li>Создания API</li>
+    <li>Небольших и средних проектов</li>
+    <li>Изучения веб-разработки</li>
+  </ul>
+</div>
+
+<div style="margin-top: 2rem; background: #f0f7ff; padding: 1rem; border-radius: 5px;">
+  <h3>Попробуйте API!</h3>
+  <p>Перейдите в раздел <a href="/api/console" style="color: #2575fc;">API Консоль</a>, чтобы увидеть пример работы REST API, который я создал.</p>
+</div>
+{% endblock %}

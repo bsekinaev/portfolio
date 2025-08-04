@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>API Консоль</h2>
+<p>Это интерактивная консоль для тестирования API моего портфолио. Используйте кнопки ниже, чтобы получить данные.</p>
+
+<div class="api-buttons">
+  <button id="fetchProfileBtn" class="btn api-btn">Получить профиль (GET /api/profile)</button>
+  <button id="fetchProjectsBtn" class="btn api-btn">Получить проекты (GET /api/projects)</button>
+</div>
+
+<div class="api-response">
+  <h3>Ответ сервера:</h3>
+  <pre id="response">{"status": "Нажмите кнопку выше"}</pre>
+</div>
+
+<script>
+  const responseEl = document.getElementById('response');
+
+  async function fetchData(endpoint) {
+    responseEl.textContent = "Загрузка...";
+    try {
+      const response = await fetch(endpoint);
+      const data = await response.json();
+      responseEl.textContent = JSON.stringify(data, null, 2);
+    } catch (error) {
+      responseEl.textContent = `Ошибка: ${error.message}`;
+    }
+  }
+
+  document.getElementById('fetchProfileBtn').addEventListener('click', () => {
+    fetchData('/api/profile');
+  });
+
+  document.getElementById('fetchProjectsBtn').addEventListener('click', () => {
+    fetchData('/api/projects');
+  });
+</script>
+
+<style>
+  .api-buttons {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+  }
+
+  .api-btn {
+    background: #4f46e5;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .api-response {
+    background: #2d2d2d;
+    color: #f8f8f2;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    overflow-x: auto;
+  }
+
+  #response {
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+</style>
+{% endblock %}
