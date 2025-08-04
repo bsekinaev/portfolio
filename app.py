@@ -1,12 +1,30 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request, flash, redirect, url_for
 from config import Config
 from models import db, Profile, Project
-from datetime import datetime
+from datetime import datetime, timezone  # Исправлено на timezone-aware datetime
+from flask_mail import Mail, Message
+from flask_wtf import FlaskForm  # Добавлен импорт FlaskForm
+from wtforms import StringField, TextAreaField, SubmitField  # Добавлены поля формы
+from wtforms.validators import DataRequired, Email  # Добавлены валидаторы
 
 
 app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
+mail = Mail(app)
+
+# Определение формы контактов
+class ContactForm(FlaskForm):
+    name = StringField('Имя', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    subject = StringField('Тема', validators=[DataRequired()])
+    message = TextAreaField('Сообщение', validators=[DataRequired()])
+    submit = SubmitField('Отправить')
+
+# Контекстный процессор для добавления переменной now во все шаблоны
+@app.context_processor
+def inject_now():
+    return {'now': datetime.now(timezone.utc)}  # Исправлено на timezone-aware
 
 # Инициализация базы данных при запуске приложения
 with app.app_context():
@@ -20,7 +38,6 @@ with app.app_context():
         )
         db.session.add(my_profile)
 
-        # Добавляем тестовые проекты
         projects = [
             Project(
                 title="Мой сайт-портфолио",
@@ -28,7 +45,7 @@ with app.app_context():
                 technologies="Python, Flask, SQLite, HTML, CSS, JavaScript",
                 github_url="https://github.com/yourusername/my-portfolio",
                 demo_url="http://yourportfolio.com",
-                image_url="images/portfolio.png"  # Упрощенный путь
+                image_url="images/portfolio.png"
             ),
             Project(
                 title="Игра на Python",
@@ -36,7 +53,7 @@ with app.app_context():
                 technologies="Python, Pygame",
                 github_url="https://github.com/yourusername/snake-game",
                 demo_url=None,
-                image_url="images/snake.png"  # Упрощенный путь
+                image_url="images/snake.png"
             ),
             Project(
                 title="Погодное приложение",
@@ -44,7 +61,7 @@ with app.app_context():
                 technologies="Python, Flask, JavaScript, API",
                 github_url="https://github.com/yourusername/weather-app",
                 demo_url="http://weather-app.example.com",
-                image_url="images/weather.png"  # Упрощенный путь
+                image_url="images/weather.png"
             )
         ]
 
@@ -52,11 +69,6 @@ with app.app_context():
             db.session.add(project)
 
         db.session.commit()
-
-# Контекстный процессор для добавления переменной now во все шаблоны
-@app.context_processor
-def inject_now():
-    return {'now': datetime.utcnow()}
 
 @app.route('/')
 def index():
@@ -72,9 +84,33 @@ def projects():
     projects_list = Project.query.all()
     return render_template('projects.html', page_title='Мои проекты', projects=projects_list)
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    return render_template('contact.html', page_title='Контакты')
+    form = ContactForm()
+
+    if form.validate_on_submit():
+        # Отправка email
+        msg = Message(
+            subject=f"Сообщение с портфолио: {form.subject.data}",
+            sender=app.config['MAIL_DEFAULT_SENDER'],
+            recipients=['your@email.com'],  # Замените на ваш реальный email
+            body=f"""
+            От: {form.name.data} <{form.email.data}>
+            Тема: {form.subject.data}
+            
+            Сообщение:
+            {form.message.data}
+            """
+        )
+
+        try:
+            mail.send(msg)
+            flash('Ваше сообщение успешно отправлено! Я свяжусь с вами в ближайшее время.', 'success')
+            return redirect(url_for('contact'))
+        except Exception as e:
+            flash(f'Произошла ошибка при отправке сообщения: {str(e)}', 'danger')
+
+    return render_template('contact.html', page_title='Контакты', form=form)
 
 @app.route('/api/console')
 def api_console():

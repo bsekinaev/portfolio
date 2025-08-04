@@ -1,33 +1,180 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Свяжитесь со мной</h2>
+<div class="content-container">
+  <h2 class="section-title">Свяжитесь со мной</h2>
 
-<form class="contact-form">
-  <div class="form-group">
-    <label for="name">Ваше имя:</label>
-    <input type="text" id="name" name="name" required>
+  <div class="contact-grid">
+    <div>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      <div class="flash-messages" style="margin-bottom: 2rem;">
+        {% for category, message in messages %}
+        <div class="alert" style="
+                                padding: 1rem;
+                                border-radius: 5px;
+                                margin-bottom: 1rem;
+                                {% if category == 'success' %}
+                                    background: rgba(40, 167, 69, 0.2);
+                                    border: 1px solid rgba(40, 167, 69, 0.5);
+                                {% else %}
+                                    background: rgba(220, 53, 69, 0.2);
+                                    border: 1px solid rgba(220, 53, 69, 0.5);
+                                {% endif %}
+                            ">
+          {{ message }}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% endwith %}
+
+      <form method="POST" action="{{ url_for('contact') }}">
+        {{ form.hidden_tag() }}
+
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label class="form-label" style="
+                        display: block;
+                        margin-bottom: 0.5rem;
+                        color: var(--accent-purple);
+                    " for="name">Ваше имя</label>
+          {{ form.name(class="form-control", style="
+          width: 100%;
+          padding: 0.8rem;
+          background: rgba(30, 30, 40, 0.8);
+          border: 1px solid rgba(11, 252, 252, 0.3);
+          border-radius: 5px;
+          color: #e0e0e0;
+          font-size: 1rem;
+          ", placeholder="Ваше имя") }}
+          {% if form.name.errors %}
+          <div style="color: #ff6b6b; margin-top: 0.5rem;">
+            {% for error in form.name.errors %}
+            <small>{{ error }}</small>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label class="form-label" style="
+                        display: block;
+                        margin-bottom: 0.5rem;
+                        color: var(--accent-purple);
+                    " for="email">Ваш Email</label>
+          {{ form.email(class="form-control", style="
+          width: 100%;
+          padding: 0.8rem;
+          background: rgba(30, 30, 40, 0.8);
+          border: 1px solid rgba(11, 252, 252, 0.3);
+          border-radius: 5px;
+          color: #e0e0e0;
+          font-size: 1rem;
+          ", placeholder="Ваш email") }}
+          {% if form.email.errors %}
+          <div style="color: #ff6b6b; margin-top: 0.5rem;">
+            {% for error in form.email.errors %}
+            <small>{{ error }}</small>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label class="form-label" style="
+                        display: block;
+                        margin-bottom: 0.5rem;
+                        color: var(--accent-purple);
+                    " for="subject">Тема сообщения</label>
+          {{ form.subject(class="form-control", style="
+          width: 100%;
+          padding: 0.8rem;
+          background: rgba(30, 30, 40, 0.8);
+          border: 1px solid rgba(11, 252, 252, 0.3);
+          border-radius: 5px;
+          color: #e0e0e0;
+          font-size: 1rem;
+          ", placeholder="Тема сообщения") }}
+          {% if form.subject.errors %}
+          <div style="color: #ff6b6b; margin-top: 0.5rem;">
+            {% for error in form.subject.errors %}
+            <small>{{ error }}</small>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label class="form-label" style="
+                        display: block;
+                        margin-bottom: 0.5rem;
+                        color: var(--accent-purple);
+                    " for="message">Сообщение</label>
+          {{ form.message(class="form-control", style="
+          width: 100%;
+          min-height: 150px;
+          padding: 0.8rem;
+          background: rgba(30, 30, 40, 0.8);
+          border: 1px solid rgba(11, 252, 252, 0.3);
+          border-radius: 5px;
+          color: #e0e0e0;
+          font-size: 1rem;
+          resize: vertical;
+          ", placeholder="Ваше сообщение...") }}
+          {% if form.message.errors %}
+          <div style="color: #ff6b6b; margin-top: 0.5rem;">
+            {% for error in form.message.errors %}
+            <small>{{ error }}</small>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+
+        <button type="submit" class="btn-submit" style="
+                    background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-pink) 100%);
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    padding: 0.8rem 1.5rem;
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    width: 100%;
+                ">
+          Отправить сообщение
+        </button>
+      </form>
+    </div>
+
+    <div class="contact-info">
+      <h3><i class="fas fa-address-card"></i> Мои контакты</h3>
+      <ul>
+        <li>
+          <i class="fas fa-envelope"></i>
+          Email: <a href="mailto:bsekinaev@ya.ru"> bsekinaev@ya.ru</a>
+        </li>
+        <li>
+          <i class="fab fa-github"></i>
+          GitHub: <a href="https://github.com/bsekinaev" target="_blank"> @bsekinaev</a>
+        </li>
+        <li>
+          <i class="fab fa-telegram"></i>
+          Telegram: <a href="https://t.me/bsekinaev" target="_blank"> @bsekinaev</a>
+        </li>
+        <li>
+          <i class="fas fa-map-marker-alt"></i>
+          Местоположение: Ставрополь, Россия
+        </li>
+      </ul>
+
+      <h3 style="margin-top: 2rem;"><i class="fas fa-business-time"></i> Часы работы</h3>
+      <ul>
+        <li><i class="far fa-clock"></i> Понедельник-Пятница: 9:00 - 18:00</li>
+        <li><i class="far fa-clock"></i> Суббота: 10:00 - 15:00</li>
+        <li><i class="far fa-clock"></i> Воскресенье: Выходной</li>
+      </ul>
+    </div>
   </div>
-
-  <div class="form-group">
-    <label for="email">Ваш email:</label>
-    <input type="email" id="email" name="email" required>
-  </div>
-
-  <div class="form-group">
-    <label for="message">Сообщение:</label>
-    <textarea id="message" name="message" rows="5" required></textarea>
-  </div>
-
-  <button type="submit" class="btn submit-btn">Отправить</button>
-</form>
-
-<div class="contact-info">
-  <p>Также вы можете связаться со мной напрямую:</p>
-  <ul>
-    <li>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></li>
-    <li>GitHub: <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></li>
-    <li>LinkedIn: <a href="https://linkedin.com/in/yourusername" target="_blank">linkedin.com/in/yourusername</a></li>
-  </ul>
 </div>
 {% endblock %}

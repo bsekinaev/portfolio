@@ -1,22 +1,246 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Добро пожаловать!</h2>
-<p>Это моё портфолио, созданное с помощью Flask. Здесь вы можете узнать обо мне и моих навыках.</p>
+<div class="content-container" style="
+    background: rgba(20, 20, 30, 0.8);
+    border: 1px solid rgba(11, 252, 252, 0.3);
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 2rem 0;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(11, 252, 252, 0.2);
+">
+  <h2 class="section-title" style="
+        color: var(--accent-neon);
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-family: 'Orbitron', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 1.8rem;
+        text-shadow: 0 0 5px rgba(11, 252, 252, 0.5);
+    ">Добро пожаловать!</h2>
 
-<div style="margin-top: 2rem;">
-  <h3>Почему Flask?</h3>
-  <p>Flask - это легковесный фреймворк для создания веб-приложений на Python. Он идеально подходит для:</p>
-  <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-    <li>Быстрого прототипирования</li>
-    <li>Создания API</li>
-    <li>Небольших и средних проектов</li>
-    <li>Изучения веб-разработки</li>
-  </ul>
-</div>
+  <p style="
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    ">
+    Это мое портфолио, созданное с помощью Flask и современных веб-технологий.
+    Здесь вы можете узнать о моих навыках, проектах и связаться со мной.
+  </p>
 
-<div style="margin-top: 2rem; background: #f0f7ff; padding: 1rem; border-radius: 5px;">
-  <h3>Попробуйте API!</h3>
-  <p>Перейдите в раздел <a href="/api/console" style="color: #2575fc;">API Консоль</a>, чтобы увидеть пример работы REST API, который я создал.</p>
+  <div class="features" style="
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+    ">
+    <div class="feature-card" style="
+            background: rgba(30, 30, 40, 0.6);
+            border: 1px solid rgba(188, 19, 254, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        ">
+      <i class="fas fa-code fa-3x" style="
+                color: var(--accent-neon);
+                margin-bottom: 1rem;
+            "></i>
+      <h3 style="
+                color: var(--accent-purple);
+                margin-bottom: 1rem;
+            ">Проекты</h3>
+      <p>Посмотрите мои последние работы и проекты, которые я создал.</p>
+      <a href="/projects" class="btn" style="
+                display: inline-block;
+                background: rgba(188, 19, 254, 0.2);
+                color: var(--accent-purple);
+                border: 1px solid var(--accent-purple);
+                border-radius: 5px;
+                padding: 0.6rem 1.2rem;
+                margin-top: 1rem;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            ">Смотреть проекты</a>
+    </div>
+
+    <div class="feature-card" style="
+            background: rgba(30, 30, 40, 0.6);
+            border: 1px solid rgba(11, 252, 252, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        ">
+      <i class="fas fa-user fa-3x" style="
+                color: var(--accent-neon);
+                margin-bottom: 1rem;
+            "></i>
+      <h3 style="
+                color: var(--accent-neon);
+                margin-bottom: 1rem;
+            ">Обо мне</h3>
+      <p>Узнайте больше о моих навыках, опыте и профессиональном пути.</p>
+      <a href="/about" class="btn" style="
+                display: inline-block;
+                background: rgba(11, 252, 252, 0.2);
+                color: var(--accent-neon);
+                border: 1px solid var(--accent-neon);
+                border-radius: 5px;
+                padding: 0.6rem 1.2rem;
+                margin-top: 1rem;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            ">Узнать больше</a>
+    </div>
+
+    <div class="feature-card" style="
+            background: rgba(30, 30, 40, 0.6);
+            border: 1px solid rgba(255, 68, 204, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        ">
+      <i class="fas fa-envelope fa-3x" style="
+                color: var(--accent-neon);
+                margin-bottom: 1rem;
+            "></i>
+      <h3 style="
+                color: var(--accent-pink);
+                margin-bottom: 1rem;
+            ">Контакты</h3>
+      <p>Свяжитесь со мной для обсуждения проектов или сотрудничества.</p>
+      <a href="/contact" class="btn" style="
+                display: inline-block;
+                background: rgba(255, 68, 204, 0.2);
+                color: var(--accent-pink);
+                border: 1px solid var(--accent-pink);
+                border-radius: 5px;
+                padding: 0.6rem 1.2rem;
+                margin-top: 1rem;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            ">Написать сообщение</a>
+    </div>
+  </div>
+
+  <div class="api-callout" style="
+        background: linear-gradient(135deg, rgba(11, 252, 252, 0.1) 0%, rgba(188, 19, 254, 0.1) 100%);
+        border: 1px solid rgba(11, 252, 252, 0.3);
+        border-radius: 10px;
+        padding: 2rem;
+        text-align: center;
+        margin-top: 2rem;
+    ">
+    <h3 style="
+            color: var(--accent-neon);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        ">
+      <i class="fas fa-terminal"></i> Попробуйте мое API!
+    </h3>
+    <p style="
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        ">
+      Перейдите в раздел <a href="/api/console" style="
+                color: var(--accent-purple);
+                text-decoration: none;
+                border-bottom: 1px dashed var(--accent-purple);
+                transition: all 0.3s ease;
+            ">API Консоль</a>, чтобы увидеть пример работы REST API, который я создал.
+      Вы можете взаимодействовать с API прямо из браузера!
+    </p>
+    <a href="/api/console" class="btn" style="
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-pink) 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 0.8rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        ">
+      <i class="fas fa-code"></i> Перейти к API консоли
+    </a>
+  </div>
+
+  <div class="technologies" style="
+        margin-top: 3rem;
+        text-align: center;
+    ">
+    <h3 style="
+            color: var(--accent-neon);
+            margin-bottom: 1.5rem;
+        ">Технологии, которые я использую</h3>
+    <div class="tech-list" style="
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        ">
+      <div class="tech-item" style="
+                background: rgba(11, 252, 252, 0.1);
+                color: var(--accent-neon);
+                padding: 0.8rem 1.5rem;
+                border-radius: 30px;
+                border: 1px solid var(--accent-neon);
+            ">
+        <i class="fab fa-python"></i> Python
+      </div>
+      <div class="tech-item" style="
+                background: rgba(188, 19, 254, 0.1);
+                color: var(--accent-purple);
+                padding: 0.8rem 1.5rem;
+                border-radius: 30px;
+                border: 1px solid var(--accent-purple);
+            ">
+        <i class="fas fa-bolt"></i> Flask
+      </div>
+      <div class="tech-item" style="
+                background: rgba(255, 68, 204, 0.1);
+                color: var(--accent-pink);
+                padding: 0.8rem 1.5rem;
+                border-radius: 30px;
+                border: 1px solid var(--accent-pink);
+            ">
+        <i class="fas fa-database"></i> SQLAlchemy
+      </div>
+      <div class="tech-item" style="
+                background: rgba(11, 252, 252, 0.1);
+                color: var(--accent-neon);
+                padding: 0.8rem 1.5rem;
+                border-radius: 30px;
+                border: 1px solid var(--accent-neon);
+            ">
+        <i class="fab fa-js"></i> JavaScript
+      </div>
+      <div class="tech-item" style="
+                background: rgba(188, 19, 254, 0.1);
+                color: var(--accent-purple);
+                padding: 0.8rem 1.5rem;
+                border-radius: 30px;
+                border: 1px solid var(--accent-purple);
+            ">
+        <i class="fab fa-html5"></i> HTML5
+      </div>
+      <div class="tech-item" style="
+                background: rgba(255, 68, 204, 0.1);
+                color: var(--accent-pink);
+                padding: 0.8rem 1.5rem;
+                border-radius: 30px;
+                border: 1px solid var(--accent-pink);
+            ">
+        <i class="fab fa-css3-alt"></i> CSS3
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

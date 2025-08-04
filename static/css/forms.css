@@ -1,0 +1,151 @@
+/* Общие стили для форм */
+.form-container {
+    background: rgba(20, 20, 30, 0.8);
+    border: 1px solid rgba(11, 252, 252, 0.3);
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 2rem 0;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(11, 252, 252, 0.2);
+}
+
+.form-title {
+    color: #0ff0fc;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1.8rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #bc13fe;
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: rgba(30, 30, 40, 0.8);
+    border: 1px solid rgba(11, 252, 252, 0.3);
+    border-radius: 5px;
+    color: #e0e0e0;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #0ff0fc;
+    box-shadow: 0 0 10px rgba(11, 252, 252, 0.5);
+}
+
+textarea.form-control {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.btn-submit {
+    background: linear-gradient(135deg, #bc13fe 0%, #ff44cc 100%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(188, 19, 254, 0.4);
+}
+
+/* Стили для API консоли */
+.api-console {
+    background: rgba(15, 15, 25, 0.9);
+    border: 1px solid rgba(11, 252, 252, 0.3);
+    border-radius: 10px;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.api-btn {
+    background: rgba(11, 252, 252, 0.1);
+    color: #0ff0fc;
+    border: 1px solid #0ff0fc;
+    border-radius: 5px;
+    padding: 0.8rem 1.5rem;
+    margin: 0 0.5rem 1rem 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.api-btn:hover {
+    background: rgba(11, 252, 252, 0.3);
+    box-shadow: 0 0 10px rgba(11, 252, 252, 0.5);
+}
+
+.api-response {
+    background: rgba(10, 10, 20, 0.9);
+    border: 1px solid rgba(188, 19, 254, 0.3);
+    border-radius: 5px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    max-height: 400px;
+    overflow: auto;
+}
+
+.api-response pre {
+    color: #0ff0fc;
+    font-family: monospace;
+    white-space: pre-wrap;
+    word-break: break-all;
+    margin: 0;
+}
+
+/* Специфичные стили для страницы "Обо мне" */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.skill-card {
+    background: rgba(20, 20, 30, 0.7);
+    border: 1px solid rgba(11, 252, 252, 0.2);
+    border-radius: 8px;
+    padding: 1.2rem;
+}
+
+.skill-name {
+    color: #bc13fe;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.skill-level {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.level-bar {
+    height: 100%;
+    background: linear-gradient(to right, #bc13fe, #ff44cc);
+    border-radius: 4px;
+}

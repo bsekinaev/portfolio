@@ -1,51 +1,102 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Мои проекты</h2>
+<div class="content-container">
+    <h2 class="section-title">Мои проекты</h2>
 
-{% if projects %}
-<div class="projects-grid">
-  {% for project in projects %}
-  <div class="project-card">
-    {% if project.image_url %}
-    <img src="{{ url_for('static', filename=project.image_url) }}"
-         alt="{{ project.title }}"
-         class="project-image">
-    {% else %}
-    <div class="no-image-placeholder">Нет изображения</div>
-    {% endif %}
+    {% if projects %}
+    <div class="projects-grid">
+        {% for project in projects %}
+        <div class="project-card">
+            {% if project.image_url %}
+            <img src="{{ url_for('static', filename=project.image_url) }}"
+                 alt="{{ project.title }}"
+                 class="project-image">
+            {% else %}
+            <div class="no-image-placeholder" style="
+                            height: 200px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background: rgba(0,0,0,0.2);
+                            border-bottom: 1px solid rgba(11, 252, 252, 0.3);
+                        ">
+                <i class="fas fa-code fa-3x" style="color: var(--accent-neon);"></i>
+            </div>
+            {% endif %}
 
-    <div class="project-content">
-      <h3>{{ project.title }}</h3>
-      <p>{{ project.description }}</p>
+            <div class="project-content">
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.description }}</p>
 
-      {% if project.technologies %}
-      <div class="technologies">
-        {% for tech in project.technologies.split(',') %}
-        <span class="tech-tag">{{ tech.strip() }}</span>
+                {% if project.technologies %}
+                <div class="technologies" style="
+                                display: flex;
+                                flex-wrap: wrap;
+                                gap: 0.5rem;
+                                margin-bottom: 1.2rem;
+                            ">
+                    {% for tech in project.technologies.split(',') %}
+                    <span class="tech-tag" style="
+                                        background: rgba(11, 252, 252, 0.1);
+                                        color: var(--accent-neon);
+                                        padding: 0.3rem 0.8rem;
+                                        border-radius: 20px;
+                                        font-size: 0.85rem;
+                                        border: 1px solid var(--accent-neon);
+                                    ">
+                                        {{ tech.strip() }}
+                                    </span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="project-links" style="
+                            display: flex;
+                            gap: 1rem;
+                            margin-top: auto;
+                        ">
+                    {% if project.github_url %}
+                    <a href="{{ project.github_url }}" target="_blank" class="btn github-btn" style="
+                                    background: #333;
+                                    color: white;
+                                    text-decoration: none;
+                                    padding: 0.6rem 1.2rem;
+                                    border-radius: 4px;
+                                    font-weight: 500;
+                                    transition: all 0.3s;
+                                ">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    {% endif %}
+                    {% if project.demo_url %}
+                    <a href="{{ project.demo_url }}" target="_blank" class="btn demo-btn" style="
+                                    background: var(--accent-purple);
+                                    color: white;
+                                    text-decoration: none;
+                                    padding: 0.6rem 1.2rem;
+                                    border-radius: 4px;
+                                    font-weight: 500;
+                                    transition: all 0.3s;
+                                ">
+                        <i class="fas fa-external-link-alt"></i> Демо
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
         {% endfor %}
-      </div>
-      {% endif %}
-
-      <div class="project-links">
-        {% if project.github_url %}
-        <a href="{{ project.github_url }}" target="_blank" class="btn github-btn">
-          GitHub
-        </a>
-        {% endif %}
-        {% if project.demo_url %}
-        <a href="{{ project.demo_url }}" target="_blank" class="btn demo-btn">
-          Демо
-        </a>
-        {% endif %}
-      </div>
     </div>
-  </div>
-  {% endfor %}
+    {% else %}
+    <div class="no-projects" style="
+            text-align: center;
+            padding: 2rem;
+            background: rgba(20, 20, 30, 0.5);
+            border-radius: 8px;
+            border: 1px solid rgba(11, 252, 252, 0.3);
+        ">
+        <p class="section-title">Пока нет проектов для отображения</p>
+    </div>
+    {% endif %}
 </div>
-{% else %}
-<div class="no-projects">
-  <p>Пока нет проектов для отображения</p>
-</div>
-{% endif %}
 {% endblock %}

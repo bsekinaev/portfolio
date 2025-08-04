@@ -3,325 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page_title }} - Портфолио Батраз</title>
-    <style>
-        /* Общие стили */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Шапка */
-        header {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo span {
-            color: #4cc9f0;
-        }
-
-        /* Навигация */
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 1.5rem;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-            padding: 5px 0;
-        }
-
-        nav ul li a:hover {
-            color: #4cc9f0;
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: #4cc9f0;
-            transition: width 0.3s;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        /* Основной контент */
-        main {
-            padding: 2rem 0;
-            min-height: calc(100vh - 200px);
-        }
-
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: #1a2a6c;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(to right, #1a2a6c, #b21f1f);
-        }
-
-        /* Подвал */
-        footer {
-            background: #1a2a6c;
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            margin: 1rem 0;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: #4cc9f0;
-        }
-
-        /* Стили для проектов */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 1.5rem;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 3px solid #1a2a6c;
-        }
-
-        .project-card-content {
-            padding: 1.5rem;
-        }
-
-        .project-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-            color: #1a2a6c;
-        }
-
-        .project-card p {
-            margin-bottom: 1rem;
-            color: #555;
-        }
-
-        .technologies {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .tech-tag {
-            background: #e0e7ff;
-            color: #4f46e5;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.6rem 1.2rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .github-btn {
-            background: #333;
-            color: white;
-        }
-
-        .demo-btn {
-            background: #1a2a6c;
-            color: white;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        /* Стили для контактной формы */
-        .contact-form {
-            max-width: 600px;
-            margin: 2rem auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            background: linear-gradient(to right, #1a2a6c, #b21f1f);
-            color: white;
-            font-size: 1rem;
-            padding: 0.8rem 1.5rem;
-        }
-
-        .contact-info {
-            max-width: 600px;
-            margin: 2rem auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .contact-info ul {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .contact-info li {
-            margin-bottom: 0.8rem;
-        }
-
-        .contact-info a {
-            color: #1a2a6c;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .contact-info a:hover {
-            color: #b21f1f;
-            text-decoration: underline;
-        }
-    </style>
+    <title>{{ page_title }} - Батраз Секинаев</title>
+    <!-- Шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Стили -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/neon.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
 </head>
 <body>
-<header>
+<header class="pulse-animation">
     <div class="container">
         <div class="header-content">
             <div class="logo">
-                <h1>Батраз <span>Секинаев</span></h1>
+                <h1 class="neon-text flicker-animation">Батраз <span>Секинаев</span></h1>
             </div>
             <nav>
-                <ul>
-                    <li><a href="/">Главная</a></li>
-                    <li><a href="/about">Обо мне</a></li>
-                    <li><a href="/projects">Проекты</a></li>
-                    <li><a href="/contact">Контакты</a></li>
-                    <li><a href="/api/console">API Консоль</a></li>
-                </ul>
+                <a href="/" class="glow-on-hover">Главная</a>
+                <a href="/about" class="glow-on-hover">Обо мне</a>
+                <a href="/projects" class="glow-on-hover">Проекты</a>
+                <a href="/contact" class="glow-on-hover">Контакты</a>
+                <a href="/api/console" class="glow-on-hover">API</a>
             </nav>
         </div>
     </div>
@@ -336,11 +39,17 @@
         <div class="footer-content">
             <p>© {{ now.year }} Батраз Секинаев. Все права защищены</p>
             <div class="social-links">
-                <a href="https://github.com/yourusername" target="_blank">GitHub</a>
-                <a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
-                <a href="https://twitter.com/yourusername" target="_blank">Twitter</a>
+                <a href="https://github.com/yourusername" target="_blank" class="glow-on-hover">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/yourusername" target="_blank" class="glow-on-hover">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://twitter.com/yourusername" target="_blank" class="glow-on-hover">
+                    <i class="fab fa-twitter"></i>
+                </a>
             </div>
-            <p>Сделано с ❤️ и Flask</p>
+            <p class="neon-text">Сделано с <i class="fas fa-heart pulse-animation" style="color: var(--accent-pink);"></i> и Flask</p>
         </div>
     </div>
 </footer>

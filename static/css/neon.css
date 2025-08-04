@@ -1,0 +1,71 @@
+.neon-text {
+    color: var(--accent-neon);
+    text-shadow: 0 0 5px var(--accent-neon),
+    0 0 10px var(--accent-neon),
+    0 0 20px var(--accent-neon),
+    0 0 40px var(--accent-purple),
+    0 0 80px var(--accent-purple);
+}
+
+.neon-border {
+    border: 1px solid var(--accent-neon);
+    box-shadow: 0 0 5px var(--accent-neon),
+    0 0 10px var(--accent-neon),
+    inset 0 0 5px var(--accent-neon);
+}
+
+.glow-on-hover {
+    transition: text-shadow 0.3s ease;
+}
+
+.glow-on-hover:hover {
+    text-shadow: 0 0 5px var(--accent-neon),
+    0 0 10px var(--accent-neon);
+}
+
+/* Анимации */
+@keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow: 0 0 5px var(--accent-neon),
+        0 0 10px var(--accent-neon),
+        0 0 20px var(--accent-neon),
+        0 0 40px var(--accent-purple),
+        0 0 80px var(--accent-purple);
+    }
+    20%, 24%, 55% {
+        text-shadow: none;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 5px var(--accent-neon);
+    }
+    50% {
+        box-shadow: 0 0 20px var(--accent-neon);
+    }
+    100% {
+        box-shadow: 0 0 5px var(--accent-neon);
+    }
+}
+
+.flicker-animation {
+    animation: flicker 3s infinite;
+}
+
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+
+.float-animation {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}

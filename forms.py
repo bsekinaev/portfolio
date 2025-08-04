@@ -11,7 +11,7 @@ class LoginForm(FlaskForm):
         Email(message='Неверный формат email')
     ])
     subject = StringField('Тема', validators=[
-        DataRequired(message='Пожалуйста, введите тему')
+        DataRequired(message='Пожалуйста, введите тему'),
         Length(min=3, max=100, message='Тема должна быть от 3 до 100 символов')
     ])
     message = StringField('Сообщение', validators=[
